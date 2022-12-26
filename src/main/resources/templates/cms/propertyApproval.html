@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/Admin/Layout :: headerLink">
+
+</head>
+<body class="text-left">
+	<div th:replace="/Admin/Layout :: navbar"></div>
+	<div class="main-content-wrap sidenav-open d-flex flex-column">
+		<!-- ============ Body content start ============= -->
+		<div class="main-content">
+			<section id="property" class="padding">
+		<div class="container property-details">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="text-uppercase" th:text="${property.propertyName}">987
+						Cantebury Drive</h2>
+					<p th:text="${property.propertyLocation}" class="bottom30">45
+						Regent Street, London, UK</p>
+					<div id="property-d-1" class="d-flex justify-content-center">
+						<div class="item" id="changedItem">
+							<img th:src="${'/uploads/property/'+property.propertyImage1}"
+							style="width: 700px; height: 400px"
+								alt="image" />
+						</div>
+					</div>
+					<div id="property-d-1-2" class="owl-carousel single mt-32">
+						<div class="item" >
+							<img th:src="${'/uploads/property/'+property.propertyImage2}"
+								style="width: 218px; height: 122.56px"
+								onerror="singlePopertyimgErr(this)" />
+						</div>
+						<div class="item">
+							<img th:src="${'/uploads/property/'+property.propertyImage3}"
+								style="width: 218px; height: 122.56px"
+								onerror="singlePopertyimgErr(this);">
+						</div>
+						<div class="item ">
+							<img th:src="${'/uploads/property/'+property.propertyImage4}"
+								style="width: 218px; height: 122.56px"
+								onerror="singlePopertyimgErr(this);" />
+						</div>
+						<div class="item">
+							<img th:src="${'/uploads/property/'+property.propertyImage5}"
+								style="width: 218px; height: 122.56px"
+								onerror="singlePopertyimgErr(this);" />
+						</div>
+						<div class="item">
+							<img th:src="${'/uploads/property/'+property.propertyImage6}"
+								style="width: 218px; height: 122.56px"
+								onerror="singlePopertyimgErr(this);" />
+						</div>
+						<div class="item">
+							<img th:src="${'/uploads/property/'+property.propertyImage7}"
+								style="width: 218px; height: 122.56px"
+								onerror="singlePopertyimgErr(this);" />
+						</div>
+						<div class="item">
+							<img th:src="${'/uploads/property/'+property.propertyImage8}"
+								style="width: 218px; height: 122.56px"
+								onerror="singlePopertyimgErr(this);" />
+						</div>
+					</div>
+					<div class="property_meta bg-black bottom40">
+						<span th:text="${'Diện tích: '+property.propertySize+'m'+'&#178'}"><i
+							class="icon-select-an-objecto-tool"></i>4800</span> <span
+							th:text="${'Loại BĐS: '+property.propertyType}"><i
+							class="icon-bed ml-32"></i>Loại bất động sản</span>
+
+					</div>
+				</div>
+				<div class="col-md-8 listing1">
+					<h2 class="text-uppercase">Giới thiệu</h2>
+					<p class="bottom30" th:utext="${property.propertyDescription}">Description</p>
+
+					<h2 class="text-uppercase bottom20">Số liệu ngôi nhà</h2>
+					<div class="row property-d-table bottom40">
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<table class="table table-striped table-responsive">
+								<tbody>
+									<tr>
+										<td><b>Mã bài đăng</b></td>
+										<td th:text="${property.propertyId}" class="text-right">5456</td>
+									</tr>
+									<tr>
+										<td><b>Giá:</b></td>
+										<td th:text="${property.propertyPrice+' Triệu VNĐ'}"
+											class="text-right">$8,600 / month</td>
+									</tr>
+									<tr>
+										<td><b>Diện tích</b></td>
+										<td th:text="${property.propertySize+' Mét vuông'}"
+											class="text-right">5,500 ft2</td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-12"></div>
+					</div>
+					<h2 class="text-uppercase bottom20">Amenities</h2>
+					<div class="row bottom40">
+						<div class="col-md-4 col-sm-6 col-xs-12"
+							th:each="list:${property.amenitiesList}">
+							<ul class="pro-list">
+								<li th:text="${list.amenityName}">Air Conditioning</li>
+							</ul>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="aprroval">
+			<div class="d-flex justify-content-center submitBtn">
+				<a class="btn btn-primary text-white" th:href="@{/Admin/acept-approval-property/(Url=${property.propertyUrl})}">Duyệt bài</a>
+				<a class="btn btn-danger text-white ml-32" id="rejectPost" onclick="openReason()">Từ chối bài</a>
+				
+			</div>
+			<div class="rejected mt-32 container" id="tuananhtest">
+				<textarea  id="message" name="message" placeholder="Lí do từ chối" class="form-control"></textarea>
+				<div><a  class="btn btn-danger text-white mt-8"  th:href="@{/Admin/reject-property/(Url=${property.propertyUrl})}">Xóa bài viết</a> </div>
+			</div>
+		</div>
+	</section>
+		</div>
+		<br> <br> <br> <br> <br> <br> <br>
+		<!-- Footer Start -->
+		<div th:replace="/Admin/Layout :: footer"></div>
+		<!-- footer end -->
+	</div>
+	<div th:replace="/Admin/Layout :: footerLink"></div>
+</body>
+</html>

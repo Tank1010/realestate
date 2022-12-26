@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:replace="layout :: headerLink">
+</head>
+<body>
+	<!--====================  NavBar area Start ====================-->
+	<div th:replace="layout :: navbar"></div>
+	<!--====================  NavBar area End ====================-->
+
+	<!-- Body Content Start -->
+	<!-- Page Banner Start-->
+	<section class="page-banner padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h1 class="text-uppercase">Chào mừng đến với</h1>
+					<p>Bất động sản Castle</p>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Page Banner End -->
+
+	<!-- Property Search area Start -->
+
+	<section class="property-query-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h2 class="uppercase">Tìm kiếm nâng cao</h2>
+					<p class="heading_space">Chúng tôi luôn cố gắng nâng cao trải nghiệm
+					người dùng bằng các tool của chúng tôi.</p>
+				</div>
+			</div>
+			<div class="row">
+				<form class="callus" action="/property/search-Property" method="post">
+					<div class="col-md-3 col-sm-6">
+						<div class="single-query form-group">
+							<input type="text" class="keyword-input" id="propertyName"
+								name="propertyName" placeholder="Tên bài đăng">
+						</div>
+						
+					</div>
+					<div class="col-md-3 col-sm-6">
+						<div class="single-query form-group">
+							<div class="intro">
+								<input type="text" id="propertyLocation"
+									name="propertyLocation"
+									placeholder="Nhập địa chỉ" />
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6">
+						<div class="single-query form-group">
+							<div class="intro">
+							<select required id="propertyType" name="propetyType">
+									<option value="none">--Chọn loại bđs--</option>
+									<option th:each="ty:${type}" th:value="${ty.typeName}"
+										th:text="${ty.typeName}"></option>
+							</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6">
+						<div class="single-query form-group">
+							<div class="intro">
+								<select required id="propertyCity" name="propertyCity">
+									<option value="none">--Chọn thành phố--</option>
+									<option th:each="ty:${citySelection}" th:value="${ty.name}"
+										th:text="${ty.name}"></option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6" style="float: center">
+						<div class="row">
+							<div class="col-md-4 text-right form-group">
+								<button type="submit" class="btn-blue border_radius top15">Tìm kiếm</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<!-- Property Search area End -->
+
+
+
+	<!-- Latest Property -->
+	<section id="property" class="padding index2 bg_light">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<h2 class="uppercase">Đề xuất các bất động sản</h2>
+					<p class="heading_space">Những bất động sản được đề xuất có thể phù hợp với bạn.</p>
+				</div>
+			</div>
+			<div class="row">
+
+				<div class="col-sm-6 col-md-4" th:each="property : ${page.content}">
+					<div class="property_item heading_space">
+						<div class="property_head text-center">
+							<h3 class="captlize ">
+								<a
+									th:href="@{/property/single-property/(Url=${property.propertyUrl})}"
+									th:text="${property.propertyName}">Historic Town House</a>
+							</h3>
+							<p th:text="${property.propertyLocation}">45 Regent Street,
+								London, UK</p>
+						</div>
+						<div class="image">
+							<a
+								th:href="@{/property/single-property/(Url=${property.propertyUrl})}"><img
+								th:src="${'/uploads/property/'+property.propertyImage2}"
+								class="img-responsive"> </a>
+							<div class="price clearfix">
+								<span class="tag_t">Rao bán</span> 
+							</div>
+						</div>
+						<div class="proerty_content">
+
+							<div class="property_meta">
+								<span th:text="${property.propertySize+'m'+'&#178'}"><i
+									class="icon-select-an-objecto-tool"></i>4800</span> <span
+									th:text="${'Loại BĐS: '+property.propertyType}"><i
+									class="icon-bed"></i>Loại bất động sản</span>
+
+							</div>
+							<!-- <div class="proerty_text">
+								<p th:utext="${property.propertyDescription}">Lorembis …</p>
+							</div> -->
+							<!-- <div class="property_meta transparent">
+								<span ><i class="icon-select-an-objecto-tool"></i><small th:text="${property.propertySize}"></small></span> 
+								<span ><i class="icon-bed"></i><small th:text="${property.propertyTotalHall+' Hall'}"></small> </span>
+								 <span><i class="icon-safety-shower"></i>1 Bathroom</span>
+							</div>
+							<div class="property_meta transparent bottom30">
+								<span><i class="icon-old-television"></i>TV Lounge</span> <span><i
+									class="icon-garage"></i>1 Garage</span> <span></span>
+							</div> -->
+
+							<div class="favroute clearfix">
+								<p class="pull-md-left"
+									th:text="${property.propertyPrice+'Triệu VNĐ'}">8,600 Triệu VNĐ</p>
+								<ul class="pull-right">
+									<li><a
+										th:href="@{/property/myFavorite/(Url=${property.propertyUrl})}"><i
+											class="icon-like"></i></a></li>
+
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!-- Pgignation Start -->
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<th:block th:each="i:${#numbers.sequence(0,page.totalPages-1)}">
+						<ul class="pager">
+
+							<li class="active"><span th:if="${page.number == i}" style="background-color: orange;">[[${i}+1]]</span></li>
+							<li><span th:unless="${page.number == i}"> <a
+									th:href="@{/(page=${i},size=${page.size})}">[[${i}+1]] </a>
+							</span></li>
+						</ul>
+					</th:block>
+				</div>
+			</div>
+			<!-- Pagination End -->
+
+		</div>
+	</section>
+	<!-- Latest Property Ends -->
+	<br>
+	<br>
+	<!-- Body ContentEnd -->
+	<!-- <script type="text/javascript">
+	
+		$(document).ready(function() {
+		
+			$.ajax({
+		        type: "GET",
+		        contentType: "application/json",
+		        url: "/fetch-all-propertyType",
+		        dataType: 'json',
+		        cache: false,
+		        timeout: 600000,
+		        success: function(data) {
+		        	console.log(data);
+		            var html = '';
+
+		            for (var i = 0; i < data.length; i++){
+		            
+		                html += "<option value='"+data[i].typeUrl +"'>"+
+		                    data[i].typeName +
+		                    "</a></li>";
+	            }
+		            $('#test').html(html);
+		        },
+		        error: function(e) {
+		            alert("Could not get data"); 
+		        }
+		    });
+		    
+		});
+		
+		</script> -->
+	<!-- footer Start -->
+
+	<div th:replace="layout :: footer"></div>
+	<!-- footer End -->
+
+	<!--  JS Files Start-->
+	<div th:replace="layout :: footerLink"></div>
+	<!-- JS Files End -->
+
+</body>
+</html>

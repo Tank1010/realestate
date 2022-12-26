@@ -1,0 +1,378 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:fragment="headerLink">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Castle</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/css/reality-icon.css">
+<link rel="stylesheet" type="text/css" href="/css/bootsnav.css">
+<link rel="stylesheet" type="text/css" href="/css/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="/css/owl.transitions.css">
+<link rel="stylesheet" type="text/css" href="/css/cubeportfolio.min.css">
+<link rel="stylesheet" type="text/css" href="/css/settings.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/range-Slider.min.css">
+<link rel="stylesheet" type="text/css" href="/css/search.css">
+<link rel="icon" href="/images/icon.png">
+<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://map.googleapis.com/map/api/js?key=AIzaSyB-JafQ8L5tNusatW-mMT6tYxHXAJcKLcU"></script>
+<style type="text/css">
+.chkbox {
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
+	display: inline-block;
+	margin: 2px 7px 0 0;
+	position: relative;
+	overflow: hidden;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 8px;
+	background: rgb(255, 255, 255);
+	border: 1px solid #ccc;
+}
+.ultype{
+	list-style-type: '\2713    ';
+
+}
+
+
+</style>
+</head>
+
+
+<body>
+
+	<!-- <div class="loader">
+  <div class="span">
+    <div class="location_indicator"></div>
+  </div>
+</div> -->
+	<div th:fragment="navbar">
+
+
+		<!--Header-->
+		<header class="layout_default">
+			<div class="topbar grey">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-5">
+							<p>Website bất động sản</p>
+						</div>
+						<div class="col-md-7 text-right">
+							<ul class="breadcrumb_top text-right">
+								<li><a href="favorite_properties.html"><i
+										class="icon-icons43"></i>Yêu thích</a></li>
+								<li><a href="/property/add-property"><i
+										class="icon-icons215"></i>Thêm tin</a></li>
+								<li><a href="/property/my-properties"><i
+										class="icon-icons215"></i>Tin đã đăng</a></li>
+								<li sec:authorize="isAnonymous()"><a href="/login"><i
+										class="icon-icons179"></i>Đăng nhập / Đăng kí</a></li>
+								<li sec:authorize="isAuthenticated()"><a href="my-profile"><i
+										class="icon-icons230"></i>Profile</a></li>
+								<li sec:authorize="isAuthenticated()"><a href="/logout"><i
+										class="icon-icons179"></i>Đăng xuất</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="header-upper">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3 col-sm-12">
+							<div class="logo">
+								<a href="/"><img alt="" src="/images/logo.png"></a>
+							</div>
+						</div>
+						<!--Info Box-->
+						<div class="col-md-9 col-sm-12 right">
+							<div class="info-box first">
+								<div class="icons">
+									<i class="icon-telephone114"></i>
+								</div>
+								<ul>
+									<li><strong>HOTLINE</strong></li>
+									<li>+0833832393</li>
+								</ul>
+							</div>
+							<div class="info-box">
+								<div class="icons">
+									<i class="icon-icons74"></i>
+								</div>
+								<ul>
+									<li><strong>UNIVERSITY</strong></li>
+									<li>SỐ 2, CẦU GIẤY</li>
+								</ul>
+							</div>
+							<div class="info-box">
+								<div class="icons">
+									<i class="icon-icons142"></i>
+								</div>
+								<ul>
+									<li><strong>EMAIL ADDRESS</strong></li>
+									<li><a href="javascript:void(0)">maincreep1010@gmail.com</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<nav class="navbar navbar-default navbar-sticky bootsnav">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+
+							<!-- Start Header Navigation -->
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle"
+									data-toggle="collapse" data-target="#navbar-menu">
+									<i class="fa fa-bars"></i>
+								</button>
+								<a class="navbar-brand sticky_logo" href="/"><img
+									src="/images/logo-white.png" class="logo" alt=""></a>
+							</div>
+							<!-- End Header Navigation -->
+							<div class="collapse navbar-collapse" id="navbar-menu">
+								<ul class="nav navbar-nav" data-in="fadeIn" data-out="fadeOut">
+									<li><a href="/" class="dropdown-toggle"
+										data-toggle="dropdown">Trang chủ </a></li>
+										
+									<li class="dropdown "><a href="#." class="dropdown-toggle"
+										data-toggle="dropdown">Tin </a>
+										<ul  id="type" class="dropdown-menu">       
+										</ul>
+									</li>
+
+									<li class="dropdown "><a href="#." class="dropdown-toggle"
+										data-toggle="dropdown">Services </a>
+										<ul class="dropdown-menu">
+											<li class="dropdown"><a href="https://batdongsan.com.vn/tin-tuc"
+												class="dropdown-toggle" data-toggle="dropdown">Tin tức</a>
+											</li>
+											<li class="dropdown"><a href="https://batdongsan.com.vn/mach-ban"
+												class="dropdown-toggle" data-toggle="dropdown">Mách Bạn</a>
+											</li>
+										</ul>
+									<li><a href="/contact">Liên hệ</a></li>
+									<li><a href="/Buy-Package">Mua gói</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</header>
+	</div>
+	<!--Header Ends-->
+
+	<!-- Page Banner Start-->
+	<section class="page-banner padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h1 class="text-uppercase">Your Msg</h1>
+					<p>The page you are looking for was moved, removed, renamed or
+						might never existed.</p>
+					<ol class="breadcrumb text-center">
+						<li><a href="#">Home</a></li>
+						<li><a href="#">Your Msg</a></li>
+						<li class="active">Your Msg</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Page Banner End -->
+
+	<!-- Body Content Start -->
+
+	<!-- Body ContentEnd -->
+
+	<!-- foote Start -->
+	<!--Footer-->
+	<div th:fragment="footer">
+		<br> <br> <br>
+		<footer class="footer_fourth">
+
+			<div class="contacts">
+				<div class="row">
+					<div class="col-sm-4 text-center">
+						<div class="info-box first">
+							<div class="icons">
+								<i class="icon-telephone114"></i>
+							</div>
+							<ul class="text-center">
+								<li><strong>HotLine</strong></li>
+								<li>+84 833832393</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-4 text-center">
+						<div class="info-box">
+							<div class="icons">
+								<i class="icon-icons74"></i>
+							</div>
+							<ul class="text-center">
+								<li><strong>UTC</strong></li>
+								<li>Cầu Giấy, Hà Nội</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-4 text-center">
+						<div class="info-box">
+							<div class="icons">
+								<i class="icon-icons142"></i>
+							</div>
+							<ul class="text-center">
+								<li><strong>Email</strong></li>
+								<li><a href="#.">maincreep1010@gmail.com</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container padding_top">
+				<div class="row">
+					<div class="col-md-3 col-sm-6">
+						<div class="footer_panel bottom30">
+							<a href="#." class="logo bottom30"><img
+								src="/images/logo.png" alt="logo"></a>
+							<p class="bottom15">Website bất động sản cho phép người dùng
+							dễ dàng thực hiện đăng tin và tương tác với người bán và hệ thống
+							giàu kinh nghiệm.</p>
+							<p class="bottom15">
+								Để dễ dàng đăng tin và tương tác <a href="#.">MUA GÓI NGAY!</a>
+							</p>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6">
+						<div class="footer_panel bottom30">
+							<h4 class="bottom30">Mục có thể bạn đang tìm</h4>
+							<table style="width: 100%;">
+								<tbody>
+									<tr>
+										<td>
+											<ul class="links">
+												<li><a href="#."><i></i>Về chúng tôi</a></li>
+												<li class="active"><a href="#."><i></i>Tin tức</a></li>
+												<li><a href="#."> <i></i>Liên hệ
+												</a></li>
+												<li><a href="#."><i></i>Giấy phép</a></li>
+												<li><a href="#."><i></i>Bản in</a></li>
+											</ul>
+										</td>
+										<td class="text-right">
+											<ul class="links text-left">
+												<li><a href="#."><i></i>Dịch vụ</a></li>
+												<li class="active"><a href="#."><i></i>Careers</a></li>
+												<li><a href="#."><i></i>Đội ngũ</a></li>
+												<li><a href="#."><i></i>Shop</a></li>
+												<li><a href="#."><i></i>Tài liệu</a></li>
+											</ul>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div style="float: right" class="col-md-6 col-sm-6">
+						<div class="footer_panel bottom30">
+							<h4 class="bottom30">Đăng kí</h4>
+							<p>Đăng kí email để nhận tin hàng ngày</p>
+							<form class="top30">
+								<input class="search" placeholder="Nhập Email"
+									type="search"> <a class="button_s" href="#."> <i
+									class="icon-mail-envelope-open"></i>
+								</a>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!--CopyRight-->
+				<div class="copyright_simple">
+					<div class="row">
+						<div class="col-md- col-sm-5 top20 bottom20">
+							<p>
+								Copyright &copy; 2022 <span>The Kass</span>. All rights reserved.
+							</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</footer>
+	</div>
+	<!-- foote End -->
+	<div th:fragment="footerLink">
+		<script src="/js/jquery-2.1.4.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/jquery.appear.js"></script>
+		<script src="/js/jquery-countTo.js"></script>
+		<script src="/js/bootsnav.js"></script>
+		<script src="/js/masonry.pkgd.min.js"></script>
+		<script src="/js/jquery.parallax-1.1.3.js"></script>
+		<script src="/js/editor.js"></script>
+		<script src="/js/jquery.cubeportfolio.min.js"></script>
+		<script src="/js/range-Slider.min.js"></script>
+		<script src="/js/owl.carousel.min.js"></script>
+		<script src="/js/selectbox-0.2.min.js"></script>
+		<script src="/js/zelect.js"></script>
+		<script src="/js/jquery.fancybox.js"></script>
+		<script src="/js/dropzone.min.js"></script>
+		<script src="/js/jquery.themepunch.tools.min.js"></script>
+		<script src="/js/jquery.themepunch.revolution.min.js"></script>
+		<script src="/js/revolution.extension.actions.min.js"></script>
+		<script src="/js/revolution.extension.layeranimation.min.js"></script>
+		<script src="/js/revolution.extension.navigation.min.js"></script>
+		<script src="/js/revolution.extension.parallax.min.js"></script>
+		<script src="/js/revolution.extension.slideanims.min.js"></script>
+		<script src="/js/revolution.extension.video.min.js"></script>
+		<script src="/js/custom.js"></script>
+		<script src="/js/functions.js"></script>
+		<script type="text/javascript">
+	
+		$(document).ready(function() {
+		
+			$.ajax({
+		        type: "GET",
+		        contentType: "application/json",
+		        url: "/fetch-all-propertyType",
+		        dataType: 'json',
+		        cache: false,
+		        timeout: 600000,
+		        success: function(data) {
+		        	console.log(data);
+		            var html = '';
+
+		            for (var i = 0; i < data.length; i++){
+		            
+		                html += '<li><a href="/property/propeties/'+data[i].typeUrl +'">' +
+		                    data[i].typeName +
+		                    '</a></li>';
+	            }
+		            $('#type').html(html);
+		        },
+		        error: function(e) {
+		            alert("Could not get data"); 
+		        }
+		    });
+		    
+		});
+		
+		</script>
+	</div>
+</body>
+</html>
