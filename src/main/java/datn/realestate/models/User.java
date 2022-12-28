@@ -17,4 +17,14 @@ public class User extends BaseEntity{
 	private String userName;
 	private String mail;
 	private Date dateOfBirth;
+	private String address;
+	private String gmail;
+	private String phoneNumber;
+	private String firstName;
+	private String lastName;
+	private int postNumber;
+	private String profilePhoto;
+	private boolean enable;
+	private String verificationCode;
+	private String passwd;
 }
