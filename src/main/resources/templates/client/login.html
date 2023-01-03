@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-<head th:replace="Layout :: headerLink">
+<head th:replace="client/layout::headerLink">
 </head>
 <body>
 	<!--====================  NavBar area Start ====================-->
-	<div th:replace="Layout :: navbar"></div>
+	<div "client/layout::navbar"></div>
 	<!--====================  NavBar area End ====================-->
 
 	<!-- Body Content Start -->
@@ -83,12 +83,12 @@
 	<!-- Body ContentEnd -->
 
 	<!-- foote Start -->
-	<div th:replace="Layout :: footer"></div>
+	<div th:replace="client/layout::footer"></div>
 	<!-- foote End -->
 	<!--=============================================
     =            JS files        =
     =============================================-->
-	<div th:replace="Layout :: footerLink"></div>
+	<div th:replace="client/layout::footerLink"></div>
 	<!--=====  End of JS files ======-->
 </body>
 <html>
